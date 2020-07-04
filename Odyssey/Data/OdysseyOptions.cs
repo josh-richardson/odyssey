@@ -13,5 +13,7 @@ namespace Odyssey.Data
         public bool ExcludeGibberish { get; set; }
 
         public bool PreventExit { get; set; }
+
+        public string InitialFile { get; set; }
     }
 }

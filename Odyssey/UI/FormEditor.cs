@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 using Gma.System.MouseKeyHook;
 using MoreLinq;
@@ -13,6 +14,7 @@ namespace Odyssey.UI
     {
         private IKeyboardMouseEvents _mGlobalHook;
         private DateTime _startTime;
+        private string _status;
 
         public FormEditor()
         {
@@ -24,7 +26,7 @@ namespace Odyssey.UI
         private void FormEditor_Load(object sender, EventArgs e)
         {
             odysseyToolStrip1.Initialize(textBox, new List<Panel> {panelLeftIndent, panelRightIndent}, ToggleDarkMode);
-            odysseyStatusStrip1.Initialize(textBox);
+            odysseyStatusStrip1.Initialize(textBox, () => _status);
         }
 
         private void FormEditor_Resize(object sender, EventArgs e)
@@ -38,11 +40,11 @@ namespace Odyssey.UI
         {
             Options = odysseyOptions;
             if (Options.TimeGoal != null) _startTime = DateTime.Now;
+            WindowState = FormWindowState.Maximized;
             if (Options.PreventExit)
             {
-                FormBorderStyle = FormBorderStyle.None;
-                WindowState = FormWindowState.Maximized;
                 TopMost = true;
+                FormBorderStyle = FormBorderStyle.None;
                 tmrEnsureNoClose.Start();
                 _mGlobalHook = Hook.GlobalEvents();
                 _mGlobalHook.KeyDown += (sender, e) =>
@@ -51,6 +53,8 @@ namespace Odyssey.UI
                     if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.LWin || e.KeyCode == Keys.RWin) e.Handled = true;
                 };
             }
+
+            if (Options.InitialFile != null) textBox.LoadFile(Options.InitialFile);
 
             tmrCheckCompletion.Start();
         }
@@ -72,28 +76,39 @@ namespace Odyssey.UI
 
         private void tmrCheckCompletion_Tick(object sender, EventArgs e)
         {
-            if (Options.TimeGoal != null && DateTime.Now > _startTime.Add(Options.TimeGoal ?? TimeSpan.Zero))
+            if (Options.TimeGoal != null)
             {
-                tmrCheckCompletion.Stop();
-                GoalFinished();
+                _status = _startTime.Add(Options.TimeGoal.Value).Subtract(DateTime.Now).TotalMinutes.ToString("N0") +
+                          " minutes left";
+                if (DateTime.Now > _startTime.Add(Options.TimeGoal.Value))
+                {
+                    tmrCheckCompletion.Stop();
+                    GoalFinished();
+                }
             }
 
-            if (Options.WordGoal != null && CompletionUtils.GetWordCount(textBox.Text, Options.ExcludeGibberish) >=
-                Options.WordGoal)
+            if (Options.WordGoal != null)
             {
-                tmrCheckCompletion.Stop();
-                GoalFinished();
+                var wordCount = CompletionUtils.GetWordCount(textBox.Text, Options.ExcludeGibberish);
+                _status = $"{Options.WordGoal - wordCount} words left";
+                if (wordCount >=
+                    Options.WordGoal)
+                {
+                    tmrCheckCompletion.Stop();
+                    GoalFinished();
+                }
             }
         }
 
         private void GoalFinished()
         {
+            WindowState = FormWindowState.Normal;
+
             if (Options.PreventExit)
             {
                 tmrEnsureNoClose.Stop();
-                Options.PreventExit = false;
                 FormBorderStyle = FormBorderStyle.Sizable;
-                WindowState = FormWindowState.Normal;
+                Options.PreventExit = false;
                 TopMost = false;
             }
 
@@ -103,15 +118,32 @@ namespace Odyssey.UI
 
         private void FormEditor_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (Options.PreventExit && e.CloseReason != CloseReason.WindowsShutDown) e.Cancel = true;
+            if (Options.PreventExit && e.CloseReason != CloseReason.WindowsShutDown)
+            {
+                e.Cancel = true;
+                return;
+            }
+
+            var sfd = new SaveFileDialog {Filter = "RichText File (.rtf)|*.rtf", Title = "Save your work"};
+            if (sfd.ShowDialog() == DialogResult.OK)
+                textBox.SaveFile(sfd.FileName);
+            else
+                e.Cancel = true;
         }
 
         private void tmrEnsureNoClose_Tick(object sender, EventArgs e)
         {
-            //Process.GetProcessesByName("explorer").ForEach(p => p.Kill());
             Process.GetProcessesByName("taskmgr").ForEach(p => p.Kill());
             BringToFront();
             WindowState = FormWindowState.Maximized;
+        }
+
+        private void tmrAutoSave_Tick(object sender, EventArgs e)
+        {
+            var odysseyHome =
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Odyssey");
+            if (!Directory.Exists(odysseyHome)) Directory.CreateDirectory(odysseyHome);
+            textBox.SaveFile(Path.Combine(odysseyHome, $"Odyssey_Autosave_{DateTime.Now:yy-dd-MM-HH-mm-ss}.rtf"));
         }
     }
 }

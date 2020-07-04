@@ -15,13 +15,26 @@ namespace Odyssey.UI
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            RunEditor(null);
+        }
+
+        private void btnFromDraft_Click(object sender, EventArgs e)
+        {
+            var ofd = new OpenFileDialog {Title = "Open a file", Filter = "Supported files (.rtf, .txt)|*.rtf;*.txt"};
+            if (ofd.ShowDialog() == DialogResult.OK) RunEditor(ofd.FileName);
+        }
+
+
+        private void RunEditor(string initialFile)
+        {
             var editor = new FormEditor();
             editor.Show();
             var options = new OdysseyOptions
             {
                 PreventExit = chkPreventExit.Checked,
                 ExcludeGibberish = chkExcludeGibberish.Checked,
-                DisableClipboard = chkDisableClipboard.Checked
+                DisableClipboard = chkDisableClipboard.Checked,
+                InitialFile = initialFile
             };
 
             if (rbTimeGoal.Checked) options.TimeGoal = TimeSpan.FromMinutes((int) numTimePeriod.Value);
