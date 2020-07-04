@@ -25,25 +25,24 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.components = new System.ComponentModel.Container();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.lblWordCount = new System.Windows.Forms.ToolStripStatusLabel();
-            this.pbGoalProgress = new System.Windows.Forms.ToolStripProgressBar();
-            this.lblCurrentGoal = new System.Windows.Forms.ToolStripStatusLabel();
-            this.statusStrip1.SuspendLayout();
+            this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tmrUpdateStatus = new System.Windows.Forms.Timer(this.components);
+            this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // statusStrip1
+            // statusStrip
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblWordCount,
-            this.pbGoalProgress,
-            this.lblCurrentGoal});
-            this.statusStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.statusStrip1.Location = new System.Drawing.Point(0, 0);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(695, 22);
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
+            this.lblStatus});
+            this.statusStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.statusStrip.Location = new System.Drawing.Point(0, 0);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(695, 22);
+            this.statusStrip.TabIndex = 2;
             // 
             // lblWordCount
             // 
@@ -51,27 +50,27 @@
             this.lblWordCount.Size = new System.Drawing.Size(53, 17);
             this.lblWordCount.Text = "Words: 0";
             // 
-            // pbGoalProgress
+            // lblStatus
             // 
-            this.pbGoalProgress.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.pbGoalProgress.Name = "pbGoalProgress";
-            this.pbGoalProgress.Size = new System.Drawing.Size(100, 16);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(42, 17);
+            this.lblStatus.Text = "Status:";
             // 
-            // lblCurrentGoal
+            // tmrUpdateStatus
             // 
-            this.lblCurrentGoal.Name = "lblCurrentGoal";
-            this.lblCurrentGoal.Size = new System.Drawing.Size(75, 17);
-            this.lblCurrentGoal.Text = "Words Left: ?";
+            this.tmrUpdateStatus.Enabled = true;
+            this.tmrUpdateStatus.Interval = 5000;
+            this.tmrUpdateStatus.Tick += new System.EventHandler(this.tmrUpdateStatus_Tick);
             // 
             // OdysseyStatusStrip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.statusStrip);
             this.Name = "OdysseyStatusStrip";
             this.Size = new System.Drawing.Size(695, 22);
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -79,9 +78,9 @@
 
         #endregion
 
-        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel lblWordCount;
-        private System.Windows.Forms.ToolStripProgressBar pbGoalProgress;
-        private System.Windows.Forms.ToolStripStatusLabel lblCurrentGoal;
+        private System.Windows.Forms.ToolStripStatusLabel lblStatus;
+        private System.Windows.Forms.Timer tmrUpdateStatus;
     }
 }

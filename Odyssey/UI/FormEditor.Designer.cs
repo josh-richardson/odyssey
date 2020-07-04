@@ -38,11 +38,12 @@ namespace Odyssey.UI
             this.panelLeftIndent = new System.Windows.Forms.Panel();
             this.panelRightIndent = new System.Windows.Forms.Panel();
             this.panelTextContainer = new System.Windows.Forms.Panel();
+            this.tmrCheckCompletion = new System.Windows.Forms.Timer(this.components);
+            this.tmrEnsureNoClose = new System.Windows.Forms.Timer(this.components);
+            this.tmrAutoSave = new System.Windows.Forms.Timer(this.components);
             this.textBox = new ExtendedRichTextBox();
             this.odysseyToolStrip1 = new Odyssey.UI.Controls.OdysseyToolStrip();
             this.odysseyStatusStrip1 = new Odyssey.UI.Controls.OdysseyStatusStrip();
-            this.tmrCheckCompletion = new System.Windows.Forms.Timer(this.components);
-            this.tmrEnsureNoClose = new System.Windows.Forms.Timer(this.components);
             this.panelTextContainer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,6 +75,22 @@ namespace Odyssey.UI
             this.panelTextContainer.Size = new System.Drawing.Size(624, 514);
             this.panelTextContainer.TabIndex = 8;
             // 
+            // tmrCheckCompletion
+            // 
+            this.tmrCheckCompletion.Interval = 2000;
+            this.tmrCheckCompletion.Tick += new System.EventHandler(this.tmrCheckCompletion_Tick);
+            // 
+            // tmrEnsureNoClose
+            // 
+            this.tmrEnsureNoClose.Interval = 500;
+            this.tmrEnsureNoClose.Tick += new System.EventHandler(this.tmrEnsureNoClose_Tick);
+            // 
+            // tmrAutoSave
+            // 
+            this.tmrAutoSave.Enabled = true;
+            this.tmrAutoSave.Interval = 300000;
+            this.tmrAutoSave.Tick += new System.EventHandler(this.tmrAutoSave_Tick);
+            // 
             // textBox
             // 
             this.textBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -87,7 +104,7 @@ namespace Odyssey.UI
             charStyle1.Strikeout = false;
             charStyle1.Underline = false;
             this.textBox.SelectionCharStyle = charStyle1;
-            this.textBox.SelectionFont2 = new System.Drawing.Font("Calibri", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Inch);
+            this.textBox.SelectionFont2 = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Inch);
             paraLineSpacing1.ExactSpacing = 0;
             paraLineSpacing1.SpacingStyle = ExtendedRichTextBox.ParaLineSpacing.LineSpacingStyle.Unknown;
             this.textBox.SelectionLineSpacing = paraLineSpacing1;
@@ -119,16 +136,6 @@ namespace Odyssey.UI
             this.odysseyStatusStrip1.Name = "odysseyStatusStrip1";
             this.odysseyStatusStrip1.Size = new System.Drawing.Size(784, 22);
             this.odysseyStatusStrip1.TabIndex = 6;
-            // 
-            // tmrCheckCompletion
-            // 
-            this.tmrCheckCompletion.Interval = 2000;
-            this.tmrCheckCompletion.Tick += new System.EventHandler(this.tmrCheckCompletion_Tick);
-            // 
-            // tmrEnsureNoClose
-            // 
-            this.tmrEnsureNoClose.Interval = 500;
-            this.tmrEnsureNoClose.Tick += new System.EventHandler(this.tmrEnsureNoClose_Tick);
             // 
             // FormEditor
             // 
@@ -162,6 +169,7 @@ namespace Odyssey.UI
         private System.Windows.Forms.Panel panelTextContainer;
         private System.Windows.Forms.Timer tmrCheckCompletion;
         private System.Windows.Forms.Timer tmrEnsureNoClose;
+        private System.Windows.Forms.Timer tmrAutoSave;
     }
 }
 

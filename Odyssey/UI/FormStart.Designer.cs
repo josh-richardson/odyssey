@@ -35,12 +35,12 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblLogo = new System.Windows.Forms.Label();
             this.groupOptions = new System.Windows.Forms.GroupBox();
+            this.lblMinutes = new System.Windows.Forms.Label();
             this.lblWords = new System.Windows.Forms.Label();
             this.numWordGoal = new System.Windows.Forms.NumericUpDown();
             this.numTimePeriod = new System.Windows.Forms.NumericUpDown();
             this.rbWordGoal = new System.Windows.Forms.RadioButton();
             this.rbTimeGoal = new System.Windows.Forms.RadioButton();
-            this.lblMinutes = new System.Windows.Forms.Label();
             this.pnlActions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupOptions.SuspendLayout();
@@ -101,6 +101,7 @@
             this.btnFromDraft.TabIndex = 1;
             this.btnFromDraft.Text = "Start from draft";
             this.btnFromDraft.UseVisualStyleBackColor = true;
+            this.btnFromDraft.Click += new System.EventHandler(this.btnFromDraft_Click);
             // 
             // btnStart
             // 
@@ -154,6 +155,17 @@
             this.groupOptions.TabIndex = 6;
             this.groupOptions.TabStop = false;
             this.groupOptions.Text = "Session Options";
+            // 
+            // lblMinutes
+            // 
+            this.lblMinutes.AutoSize = true;
+            this.lblMinutes.Enabled = false;
+            this.lblMinutes.Location = new System.Drawing.Point(152, 150);
+            this.lblMinutes.Name = "lblMinutes";
+            this.lblMinutes.Size = new System.Drawing.Size(43, 13);
+            this.lblMinutes.TabIndex = 10;
+            this.lblMinutes.Tag = "time_group";
+            this.lblMinutes.Text = "minutes";
             // 
             // lblWords
             // 
@@ -225,17 +237,6 @@
             this.rbTimeGoal.Text = "Use a time-based goal";
             this.rbTimeGoal.UseVisualStyleBackColor = true;
             this.rbTimeGoal.CheckedChanged += new System.EventHandler(this.rbTimeGoal_CheckedChanged);
-            // 
-            // lblMinutes
-            // 
-            this.lblMinutes.AutoSize = true;
-            this.lblMinutes.Enabled = false;
-            this.lblMinutes.Location = new System.Drawing.Point(152, 150);
-            this.lblMinutes.Name = "lblMinutes";
-            this.lblMinutes.Size = new System.Drawing.Size(43, 13);
-            this.lblMinutes.TabIndex = 10;
-            this.lblMinutes.Tag = "time_group";
-            this.lblMinutes.Text = "minutes";
             // 
             // FormStart
             // 
