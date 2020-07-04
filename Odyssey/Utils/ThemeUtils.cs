@@ -5,29 +5,23 @@ using System.Linq;
 using System.Windows.Forms;
 using MoreLinq.Extensions;
 
-namespace Odyssey
+namespace Odyssey.Utils
 {
-    class Theming
+    internal class ThemeUtils
     {
         public static void ToggleDarkMode(Form form)
         {
             foreach (var control in GetAllChildren(form).Concat(new Control[] {form}))
             {
                 InvertColors(control);
-
-                if (control is ToolStrip strip)
-                {
-                    strip.Items.Cast<ToolStripItem>().ForEach(InvertToolStripItem);
-                }
+                if (control is ToolStrip strip) strip.Items.Cast<ToolStripItem>().ForEach(InvertToolStripItem);
             }
         }
 
         private static void InvertToolStripItem(ToolStripItem item)
         {
             if (item is ToolStripDropDownItem dropDown)
-            {
                 dropDown.DropDownItems.Cast<ToolStripItem>().ForEach(InvertToolStripItem);
-            }
 
             if (item.Image != null) item.Image = InvertImage(new Bitmap(item.Image));
             if (string.IsNullOrWhiteSpace(item.GetCurrentParent().Name)) InvertColors(item);

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using MoreLinq;
 using Odyssey.controls;
@@ -22,7 +21,7 @@ namespace Odyssey.UI.Controls
             InitializeComponent();
         }
 
-        public void Initialize(ExtendedRichTextBox textBox, List<Panel> indentPanels, Func<bool> toggleDarkMode)
+        public void Initialize(ExtendedRichTextBox textBox, List<Panel> indentPanels, Action toggleDarkMode)
         {
             _indentPanels = indentPanels;
             _textBox = textBox;
@@ -122,16 +121,6 @@ namespace Odyssey.UI.Controls
         private void btnToggleIndent_Click(object sender, EventArgs e)
         {
             _indentPanels.ForEach(i => i.Visible = !i.Visible);
-        }
-
-
-        private static IEnumerable<string> SplitIntoLines(string input, int maxLineLength)
-        {
-            //SplitIntoLines(_textBox.Text, 120).ForEach(i => Console.WriteLine(i + ", " + GibberishClassification.GibberishClassifier.Classify(i)));
-            var charCount = 0;
-            return input.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries)
-                .GroupBy(w => (charCount += w.Length + 1) / maxLineLength)
-                .Select(g => Regex.Replace(string.Join(" ", g), @"\r\n?|\n", " ")).ToArray();
         }
     }
 }
