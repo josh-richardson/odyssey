@@ -29,23 +29,23 @@ namespace Odyssey.UI.Controls
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OdysseyToolStrip));
             this.toolStrip = new System.Windows.Forms.ToolStrip();
-            this.BtnAlignLeft = new Odyssey.UI.Controls.TextCustomizationButton();
-            this.btnAlignCenter = new Odyssey.UI.Controls.TextCustomizationButton();
-            this.btnAlignRight = new Odyssey.UI.Controls.TextCustomizationButton();
-            this.btnAlignJustify = new Odyssey.UI.Controls.TextCustomizationButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnBold = new Odyssey.UI.Controls.TextCustomizationButton();
-            this.btnItalic = new Odyssey.UI.Controls.TextCustomizationButton();
-            this.btnUnderline = new Odyssey.UI.Controls.TextCustomizationButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.btnToggleIndent = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnTextStyle = new System.Windows.Forms.ToolStripDropDownButton();
+            this.cbxFonts = new System.Windows.Forms.ToolStripComboBox();
+            this.btnDarkMode = new System.Windows.Forms.ToolStripButton();
+            this.BtnAlignLeft = new Odyssey.UI.Controls.TextCustomizationButton();
+            this.btnAlignCenter = new Odyssey.UI.Controls.TextCustomizationButton();
+            this.btnAlignRight = new Odyssey.UI.Controls.TextCustomizationButton();
+            this.btnAlignJustify = new Odyssey.UI.Controls.TextCustomizationButton();
+            this.btnBold = new Odyssey.UI.Controls.TextCustomizationButton();
+            this.btnItalic = new Odyssey.UI.Controls.TextCustomizationButton();
+            this.btnUnderline = new Odyssey.UI.Controls.TextCustomizationButton();
             this._titleItem = new Odyssey.controls.TextCustomizationItem();
             this._subtitleItem = new Odyssey.controls.TextCustomizationItem();
             this._paragraphItem = new Odyssey.controls.TextCustomizationItem();
-            this.cbxFonts = new System.Windows.Forms.ToolStripComboBox();
-            this.btnDarkMode = new System.Windows.Forms.ToolStripButton();
             this.toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,6 +71,62 @@ namespace Odyssey.UI.Controls
             this.toolStrip.Size = new System.Drawing.Size(731, 25);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "toolStrip1";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btnToggleIndent
+            // 
+            this.btnToggleIndent.Checked = true;
+            this.btnToggleIndent.CheckOnClick = true;
+            this.btnToggleIndent.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.btnToggleIndent.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnToggleIndent.Image = ((System.Drawing.Image)(resources.GetObject("btnToggleIndent.Image")));
+            this.btnToggleIndent.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnToggleIndent.Name = "btnToggleIndent";
+            this.btnToggleIndent.Size = new System.Drawing.Size(23, 22);
+            this.btnToggleIndent.Text = "Toggle Indent";
+            this.btnToggleIndent.Click += new System.EventHandler(this.btnToggleIndent_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btnTextStyle
+            // 
+            this.btnTextStyle.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._titleItem,
+            this._subtitleItem,
+            this._paragraphItem});
+            this.btnTextStyle.Image = ((System.Drawing.Image)(resources.GetObject("btnTextStyle.Image")));
+            this.btnTextStyle.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnTextStyle.Name = "btnTextStyle";
+            this.btnTextStyle.Size = new System.Drawing.Size(90, 22);
+            this.btnTextStyle.Text = "Paragraph";
+            this.btnTextStyle.ToolTipText = "Font Size";
+            // 
+            // cbxFonts
+            // 
+            this.cbxFonts.Name = "cbxFonts";
+            this.cbxFonts.Size = new System.Drawing.Size(200, 25);
+            this.cbxFonts.SelectedIndexChanged += new System.EventHandler(this.ComboBoxFonts_SelectedIndexChanged);
+            // 
+            // btnDarkMode
+            // 
+            this.btnDarkMode.CheckOnClick = true;
+            this.btnDarkMode.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnDarkMode.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDarkMode.Name = "btnDarkMode";
+            this.btnDarkMode.Size = new System.Drawing.Size(69, 22);
+            this.btnDarkMode.Text = "Dark Mode";
             // 
             // BtnAlignLeft
             // 
@@ -124,11 +180,6 @@ namespace Odyssey.UI.Controls
             this.btnAlignJustify.TextAlignment = ExtendedRichTextBox.RichTextAlign.Justify;
             this.btnAlignJustify.ToolTipText = "Align Justify";
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
             // btnBold
             // 
             this.btnBold.CheckOnClick = true;
@@ -138,9 +189,8 @@ namespace Odyssey.UI.Controls
             this.btnBold.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnBold.Name = "btnBold";
             this.btnBold.Size = new System.Drawing.Size(23, 22);
-            this.btnBold.Text = "Align Unknown";
+            this.btnBold.Text = "Bold";
             this.btnBold.TextAlignment = ExtendedRichTextBox.RichTextAlign.Unknown;
-            this.btnBold.ToolTipText = "Align Unknown";
             // 
             // btnItalic
             // 
@@ -151,9 +201,8 @@ namespace Odyssey.UI.Controls
             this.btnItalic.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnItalic.Name = "btnItalic";
             this.btnItalic.Size = new System.Drawing.Size(23, 22);
-            this.btnItalic.Text = "Align Unknown";
+            this.btnItalic.Text = "Italic";
             this.btnItalic.TextAlignment = ExtendedRichTextBox.RichTextAlign.Unknown;
-            this.btnItalic.ToolTipText = "Align Unknown";
             // 
             // btnUnderline
             // 
@@ -164,45 +213,8 @@ namespace Odyssey.UI.Controls
             this.btnUnderline.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnUnderline.Name = "btnUnderline";
             this.btnUnderline.Size = new System.Drawing.Size(23, 22);
-            this.btnUnderline.Text = "Align Unknown";
+            this.btnUnderline.Text = "Underline";
             this.btnUnderline.TextAlignment = ExtendedRichTextBox.RichTextAlign.Unknown;
-            this.btnUnderline.ToolTipText = "Align Unknown";
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-            // 
-            // btnToggleIndent
-            // 
-            this.btnToggleIndent.Checked = true;
-            this.btnToggleIndent.CheckOnClick = true;
-            this.btnToggleIndent.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.btnToggleIndent.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnToggleIndent.Image = ((System.Drawing.Image)(resources.GetObject("btnToggleIndent.Image")));
-            this.btnToggleIndent.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnToggleIndent.Name = "btnToggleIndent";
-            this.btnToggleIndent.Size = new System.Drawing.Size(23, 22);
-            this.btnToggleIndent.Text = "Toggle Indent";
-            this.btnToggleIndent.Click += new System.EventHandler(this.btnToggleIndent_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // btnTextStyle
-            // 
-            this.btnTextStyle.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._titleItem,
-            this._subtitleItem,
-            this._paragraphItem});
-            this.btnTextStyle.Image = ((System.Drawing.Image)(resources.GetObject("btnTextStyle.Image")));
-            this.btnTextStyle.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnTextStyle.Name = "btnTextStyle";
-            this.btnTextStyle.Size = new System.Drawing.Size(90, 22);
-            this.btnTextStyle.Text = "Paragraph";
-            this.btnTextStyle.ToolTipText = "Font Size";
             // 
             // _titleItem
             // 
@@ -231,25 +243,11 @@ namespace Odyssey.UI.Controls
             this._paragraphItem.TextAlignment = ExtendedRichTextBox.RichTextAlign.Unknown;
             this._paragraphItem.TextSize = 14;
             // 
-            // cbxFonts
-            // 
-            this.cbxFonts.Name = "cbxFonts";
-            this.cbxFonts.Size = new System.Drawing.Size(200, 25);
-            this.cbxFonts.SelectedIndexChanged += new System.EventHandler(this.ComboBoxFonts_SelectedIndexChanged);
-            // 
-            // btnDarkMode
-            // 
-            this.btnDarkMode.CheckOnClick = true;
-            this.btnDarkMode.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnDarkMode.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnDarkMode.Name = "btnDarkMode";
-            this.btnDarkMode.Size = new System.Drawing.Size(69, 22);
-            this.btnDarkMode.Text = "Dark Mode";
-            // 
             // OdysseyToolStrip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.Controls.Add(this.toolStrip);
             this.Name = "OdysseyToolStrip";
             this.Size = new System.Drawing.Size(731, 25);
