@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4E5AB74C-E357-4CCE-BB05-CDBB5C4DE031}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Odyssey</RootNamespace>
+    <AssemblyName>Odyssey</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Odyssey.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GibberishClassification">
+      <HintPath>..\packages\GibberishClassification.dll</HintPath>
+    </Reference>
+    <Reference Include="MoreLinq, Version=3.3.2.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
+      <HintPath>..\packages\morelinq.3.3.2\lib\net451\MoreLinq.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Theming.cs" />
+    <Compile Include="UI\Controls\OdysseyStatusStrip.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\OdysseyStatusStrip.Designer.cs">
+      <DependentUpon>OdysseyStatusStrip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\TextCustomizationButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\TextCustomizationItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ExtendedRichTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\FormEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FormEditor.Designer.cs">
+      <DependentUpon>FormEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\OdysseyToolStrip.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\OdysseyToolStrip.Designer.cs">
+      <DependentUpon>OdysseyToolStrip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data\OdysseyOptions.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\FormStart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FormStart.Designer.cs">
+      <DependentUpon>FormStart.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="UI\Controls\OdysseyStatusStrip.resx">
+      <DependentUpon>OdysseyStatusStrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FormEditor.resx">
+      <DependentUpon>FormEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\OdysseyToolStrip.resx">
+      <DependentUpon>OdysseyToolStrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UI\FormStart.resx">
+      <DependentUpon>FormStart.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\006-bullet list.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\007-border.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\008-border.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\009-clear format.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\010-columns.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\011-indent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\012-indent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\013-fill.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\014-font.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\015-font.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\016-header.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\017-image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\018-image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\019-image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\020-indent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\021-indent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\022-image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\023-border.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\024-italic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\025-align.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\026-layout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\027-layout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\028-layout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\029-border.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\030-layout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\031-ligature.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\032-text editor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\033-index.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\034-border.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\035-border.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\036-paragraph.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\037-paragraph.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\038-paragraph.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\039-quote.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\040-quote.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\041-border.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\042-sidebar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\043-eraser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\044-sort.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\045-sort.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\046-source.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\047-spell.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\048-strikethrough.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\049-symbol.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\050-table.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\051-text.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\052-indent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\053-indent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\054-indent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\055-border.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\056-columns.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\057-type.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\058-text.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\059-underline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\060-upper.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\061-align.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\062-align.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\063-align.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\001-align center.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\002-align left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\003-align right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\004-bold.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\005-border.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\text_heading_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\text_heading_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\text_italic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\text_underline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\text-size.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\text_align_center.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\text_align_justify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\text_align_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\text_align_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\text_bold.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\text_paragraph.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\roman-helmet.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
