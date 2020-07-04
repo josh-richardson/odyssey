@@ -14,8 +14,10 @@ namespace Odyssey.UI.Controls
             set
             {
                 _textAlignment = value;
-                if (value == ExtendedRichTextBox.RichTextAlign.Unknown) return;
-                ToolTipText = Text = $"Align {value}";
+                if (value != ExtendedRichTextBox.RichTextAlign.Unknown)
+                    ToolTipText = Text = $"Align {value}";
+                else
+                    ToolTipText = Text;
             }
         }
 

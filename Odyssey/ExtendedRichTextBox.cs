@@ -1,15 +1,14 @@
 ﻿
 
-using System.Diagnostics;
-using System.Collections;
-using System.Collections.Generic;
 using System;
-using System.Windows.Forms;
-using System.Drawing;
-using System.Runtime.InteropServices;
-using System.Drawing.Printing;
+using System.Collections;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Printing;
+using System.Runtime.InteropServices;
 using System.Security.Permissions;
+using System.Windows.Forms;
 
 /// <summary>
 /// This ExtendedRichTextBox is based on .NET Framework and also uses WinAPI

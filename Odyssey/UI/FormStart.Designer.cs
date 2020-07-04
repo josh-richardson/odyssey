@@ -253,6 +253,7 @@
             this.Name = "FormStart";
             this.Text = "Odyssey - Start Session";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormStart_FormClosed);
+            this.Load += new System.EventHandler(this.FormStart_Load);
             this.pnlActions.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupOptions.ResumeLayout(false);
