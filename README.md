@@ -21,6 +21,9 @@ Odyssey is a Windows application designed to force you to focus on writing. It i
 - [x] Dark mode
 - [ ] Cloud-based draft saving
 
+### Download:
+The current release is an early alpha and may be buggy. No installation is required. You can download it from the releases page [here](https://github.com/josh-richardson/odyssey/releases). It only supports Windows at the moment, although I may at some stage look into writing a MacOS version.
+
 ### Usage:
 Firstly select a goal type (how long you want to write for, or how many words you want to write), then configure the various options. Note that if you enable the 'Prevent exiting' checkbox, Odyssey won't allow you to use any other programs on your PC until your chosen goal has been reached.
 
