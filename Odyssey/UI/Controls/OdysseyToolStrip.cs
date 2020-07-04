@@ -11,11 +11,11 @@ namespace Odyssey.UI.Controls
 {
     public partial class OdysseyToolStrip : UserControl
     {
-        private ExtendedRichTextBox _textBox;
-        private bool _initialized;
         private IEnumerable<TextCustomizationButton> _alignmentItems;
         private IEnumerable<TextCustomizationButton> _fontStyleItems;
         private List<Panel> _indentPanels;
+        private bool _initialized;
+        private ExtendedRichTextBox _textBox;
 
         public OdysseyToolStrip()
         {
@@ -63,7 +63,7 @@ namespace Odyssey.UI.Controls
             {
                 item.Click += (sender, e) =>
                 {
-                    var button = ((TextCustomizationButton)sender);
+                    var button = (TextCustomizationButton) sender;
                     _textBox.SelectionAlignment = button.TextAlignment;
                     _alignmentItems.ForEach(j => j.Checked = false);
                     button.Checked = true;
@@ -74,7 +74,7 @@ namespace Odyssey.UI.Controls
             {
                 item.Click += (sender, e) =>
                 {
-                    var button = ((TextCustomizationButton)sender);
+                    var button = (TextCustomizationButton) sender;
                     _textBox.SelectionFont = new Font(_textBox.SelectionFont,
                         _textBox.SelectionFont.Style | (button.FontStyle ?? FontStyle.Regular));
                     button.Checked = true;
@@ -111,10 +111,7 @@ namespace Odyssey.UI.Controls
             _alignmentItems.ForEach(i => i.Checked = false);
 
             var checkedItem = _alignmentItems.FirstOrDefault(i => i.TextAlignment == _textBox.SelectionAlignment);
-            if (checkedItem != null)
-            {
-                checkedItem.Checked = true;
-            }
+            if (checkedItem != null) checkedItem.Checked = true;
 
             _fontStyleItems.ForEach(i => { i.Checked = _textBox.SelectionFont.Style.HasFlag(i.FontStyle); });
 
@@ -122,11 +119,11 @@ namespace Odyssey.UI.Controls
             BeginInvoke(new Action(() => { cbxFonts.Select(0, 0); }));
         }
 
-        private void btnToggleIndent_Click(object sender, EventArgs e) {
+        private void btnToggleIndent_Click(object sender, EventArgs e)
+        {
             _indentPanels.ForEach(i => i.Visible = !i.Visible);
         }
 
-        
 
         private static IEnumerable<string> SplitIntoLines(string input, int maxLineLength)
         {

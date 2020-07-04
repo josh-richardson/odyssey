@@ -8,7 +8,8 @@ namespace Odyssey.UI.Controls
         private ExtendedRichTextBox _textBox;
 
 
-        public OdysseyStatusStrip() {
+        public OdysseyStatusStrip()
+        {
             InitializeComponent();
         }
 
