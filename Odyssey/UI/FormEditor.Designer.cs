@@ -30,6 +30,7 @@ namespace Odyssey.UI
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             ExtendedRichTextBox.CharStyle charStyle1 = new ExtendedRichTextBox.CharStyle();
             ExtendedRichTextBox.ParaLineSpacing paraLineSpacing1 = new ExtendedRichTextBox.ParaLineSpacing();
             ExtendedRichTextBox.ParaListStyle paraListStyle1 = new ExtendedRichTextBox.ParaListStyle();
@@ -40,6 +41,8 @@ namespace Odyssey.UI
             this.textBox = new ExtendedRichTextBox();
             this.odysseyToolStrip1 = new Odyssey.UI.Controls.OdysseyToolStrip();
             this.odysseyStatusStrip1 = new Odyssey.UI.Controls.OdysseyStatusStrip();
+            this.tmrCheckCompletion = new System.Windows.Forms.Timer(this.components);
+            this.tmrEnsureNoClose = new System.Windows.Forms.Timer(this.components);
             this.panelTextContainer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,7 +87,7 @@ namespace Odyssey.UI
             charStyle1.Strikeout = false;
             charStyle1.Underline = false;
             this.textBox.SelectionCharStyle = charStyle1;
-            this.textBox.SelectionFont2 = new System.Drawing.Font("Calibri", 3F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Inch);
+            this.textBox.SelectionFont2 = new System.Drawing.Font("Calibri", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Inch);
             paraLineSpacing1.ExactSpacing = 0;
             paraLineSpacing1.SpacingStyle = ExtendedRichTextBox.ParaLineSpacing.LineSpacingStyle.Unknown;
             this.textBox.SelectionLineSpacing = paraLineSpacing1;
@@ -99,6 +102,7 @@ namespace Odyssey.UI
             this.textBox.Size = new System.Drawing.Size(624, 494);
             this.textBox.TabIndex = 8;
             this.textBox.Text = "";
+            this.textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
             // 
             // odysseyToolStrip1
             // 
@@ -116,6 +120,16 @@ namespace Odyssey.UI
             this.odysseyStatusStrip1.Size = new System.Drawing.Size(784, 22);
             this.odysseyStatusStrip1.TabIndex = 6;
             // 
+            // tmrCheckCompletion
+            // 
+            this.tmrCheckCompletion.Interval = 2000;
+            this.tmrCheckCompletion.Tick += new System.EventHandler(this.tmrCheckCompletion_Tick);
+            // 
+            // tmrEnsureNoClose
+            // 
+            this.tmrEnsureNoClose.Interval = 500;
+            this.tmrEnsureNoClose.Tick += new System.EventHandler(this.tmrEnsureNoClose_Tick);
+            // 
             // FormEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -129,6 +143,7 @@ namespace Odyssey.UI
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormEditor";
             this.Text = "Odyssey";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormEditor_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormEditor_FormClosed);
             this.Load += new System.EventHandler(this.FormEditor_Load);
             this.Resize += new System.EventHandler(this.FormEditor_Resize);
@@ -145,6 +160,8 @@ namespace Odyssey.UI
         private OdysseyStatusStrip odysseyStatusStrip1;
         private ExtendedRichTextBox textBox;
         private System.Windows.Forms.Panel panelTextContainer;
+        private System.Windows.Forms.Timer tmrCheckCompletion;
+        private System.Windows.Forms.Timer tmrEnsureNoClose;
     }
 }
 

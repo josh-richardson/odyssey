@@ -4,10 +4,9 @@ namespace Odyssey.Data
 {
     public class OdysseyOptions
     {
+        public int? WordGoal { get; set; } = null;
 
-        public int? WordGoal { get; set; }
-        
-        public TimeSpan? TimeGoal { get; set; }
+        public TimeSpan? TimeGoal { get; set; } = null;
 
         public bool DisableClipboard { get; set; }
 
