@@ -38,10 +38,10 @@ namespace Odyssey.UI
             this.panelLeftIndent = new System.Windows.Forms.Panel();
             this.panelRightIndent = new System.Windows.Forms.Panel();
             this.panelTextContainer = new System.Windows.Forms.Panel();
+            this.textBox = new ExtendedRichTextBox();
             this.tmrCheckCompletion = new System.Windows.Forms.Timer(this.components);
             this.tmrEnsureNoClose = new System.Windows.Forms.Timer(this.components);
             this.tmrAutoSave = new System.Windows.Forms.Timer(this.components);
-            this.textBox = new ExtendedRichTextBox();
             this.odysseyToolStrip1 = new Odyssey.UI.Controls.OdysseyToolStrip();
             this.odysseyStatusStrip1 = new Odyssey.UI.Controls.OdysseyStatusStrip();
             this.panelTextContainer.SuspendLayout();
@@ -75,6 +75,38 @@ namespace Odyssey.UI
             this.panelTextContainer.Size = new System.Drawing.Size(624, 514);
             this.panelTextContainer.TabIndex = 8;
             // 
+            // textBox
+            // 
+            this.textBox.AcceptsTab = true;
+            this.textBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox.Location = new System.Drawing.Point(0, 10);
+            this.textBox.Name = "textBox";
+            charStyle1.Bold = false;
+            charStyle1.Italic = false;
+            charStyle1.Link = false;
+            charStyle1.Strikeout = false;
+            charStyle1.Underline = false;
+            this.textBox.SelectionCharStyle = charStyle1;
+            this.textBox.SelectionFont2 = new System.Drawing.Font("Calibri", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Inch);
+            paraLineSpacing1.ExactSpacing = 0;
+            paraLineSpacing1.SpacingStyle = ExtendedRichTextBox.ParaLineSpacing.LineSpacingStyle.Unknown;
+            this.textBox.SelectionLineSpacing = paraLineSpacing1;
+            paraListStyle1.BulletCharCode = ((short)(0));
+            paraListStyle1.NumberingStart = ((short)(0));
+            paraListStyle1.Style = ExtendedRichTextBox.ParaListStyle.ListStyle.NumberAndParenthesis;
+            paraListStyle1.Type = ExtendedRichTextBox.ParaListStyle.ListType.None;
+            this.textBox.SelectionListType = paraListStyle1;
+            this.textBox.SelectionOffsetType = ExtendedRichTextBox.OffsetType.None;
+            this.textBox.SelectionSpaceAfter = 0;
+            this.textBox.SelectionSpaceBefore = 0;
+            this.textBox.Size = new System.Drawing.Size(624, 494);
+            this.textBox.TabIndex = 8;
+            this.textBox.Text = "";
+            this.textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+            this.textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
+            // 
             // tmrCheckCompletion
             // 
             this.tmrCheckCompletion.Interval = 2000;
@@ -91,38 +123,9 @@ namespace Odyssey.UI
             this.tmrAutoSave.Interval = 300000;
             this.tmrAutoSave.Tick += new System.EventHandler(this.tmrAutoSave_Tick);
             // 
-            // textBox
-            // 
-            this.textBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox.Location = new System.Drawing.Point(0, 10);
-            this.textBox.Name = "textBox";
-            charStyle1.Bold = false;
-            charStyle1.Italic = false;
-            charStyle1.Link = false;
-            charStyle1.Strikeout = false;
-            charStyle1.Underline = false;
-            this.textBox.SelectionCharStyle = charStyle1;
-            this.textBox.SelectionFont2 = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Inch);
-            paraLineSpacing1.ExactSpacing = 0;
-            paraLineSpacing1.SpacingStyle = ExtendedRichTextBox.ParaLineSpacing.LineSpacingStyle.Unknown;
-            this.textBox.SelectionLineSpacing = paraLineSpacing1;
-            paraListStyle1.BulletCharCode = ((short)(0));
-            paraListStyle1.NumberingStart = ((short)(0));
-            paraListStyle1.Style = ExtendedRichTextBox.ParaListStyle.ListStyle.NumberAndParenthesis;
-            paraListStyle1.Type = ExtendedRichTextBox.ParaListStyle.ListType.None;
-            this.textBox.SelectionListType = paraListStyle1;
-            this.textBox.SelectionOffsetType = ExtendedRichTextBox.OffsetType.None;
-            this.textBox.SelectionSpaceAfter = 0;
-            this.textBox.SelectionSpaceBefore = 0;
-            this.textBox.Size = new System.Drawing.Size(624, 494);
-            this.textBox.TabIndex = 8;
-            this.textBox.Text = "";
-            this.textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
-            // 
             // odysseyToolStrip1
             // 
+            this.odysseyToolStrip1.AutoSize = true;
             this.odysseyToolStrip1.Dock = System.Windows.Forms.DockStyle.Top;
             this.odysseyToolStrip1.Location = new System.Drawing.Point(0, 0);
             this.odysseyToolStrip1.Name = "odysseyToolStrip1";
